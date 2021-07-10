@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS / GitHub API</title>
+    
+
+</head>
+<body>
+    <div id="app"> 
+        <div v-for="project in projects">
+            <h2 class="title"> {{ project.full_name }}</h2>
+            <div class="author">
+                <img width="50" :src="project.owner.avatar_url" alt="me">
+            </div>
+            <div class="view">
+                <a :href="project.html_url">View</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Axios latest version CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- VueJS development version -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./main.js"></script>
+
+    
+</body>
+</html>
