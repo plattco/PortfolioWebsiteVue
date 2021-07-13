@@ -1,5 +1,5 @@
-   /* Utility Classes */
-   .d_none {
+/* Utility Classes */
+.d_none {
     display: none;
 }
 .d_flex {
@@ -119,7 +119,7 @@ body{
 
 }
 a {
-text-decoration: none;   
+ text-decoration: none;   
 }
 
 /* Home Page */
@@ -211,13 +211,15 @@ nav a:hover {
 
 #portfolio {
     margin-top: 4rem;
+    
+}
+
+
+#portfolio .projects {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-}
-.btn_load_more {
-
 }
 /* Skills */
 
@@ -255,13 +257,11 @@ nav a:hover {
 
 .avatar {
     width: 30px;
-    height: auto;
+    height: 30px;
     border-radius: 50%;
         margin: 0 1rem;
 
 }
-
-
 
 
 .card__back {
