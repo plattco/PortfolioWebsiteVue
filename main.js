@@ -28,8 +28,8 @@ const Projects = {
             </div>
             <nav>
                 <router-link to='/'>Home</router-link>
-                <router-link to="/projects">Project</router-link>
-                <a href="https://wwww.github.com/plattco">
+                <router-link to="/projects">Projects</router-link>
+                <a href="https://www.github.com/plattco">
                     <i class="fab fa-github fa-lg fa-fw"></i>
                 </a>
             </nav>
@@ -37,7 +37,7 @@ const Projects = {
     
          <main class="container">
             <div class="error" v-if="errors"> 
-                Sorry! It seems we can't fetch data righ now 😥
+                Data not loading 😥
             </div>
 
             <section id="portfolio" v-else>

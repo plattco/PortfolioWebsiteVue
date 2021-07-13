@@ -13,7 +13,7 @@ a {
     color: white;
 } 
 a:hover {
-    color:#DB5461;
+    color: #23ecec;
     
 }
 .loading {
@@ -36,7 +36,7 @@ a:hover {
 .bio__media__text h1{
     font-size: 36px;
     font-weight: 900;
-    color: #DB5461;
+    color: #23ecec;
 
 }
 .bio__media__text p {
@@ -98,7 +98,7 @@ a:hover {
     cursor: pointer;
     background: #324555;
     color: white;
-    border-color: #DB5461;
+    border-color: #23ecec;
     transition: 1s;
 }
 .card__custom__text h3 {
@@ -115,7 +115,7 @@ a:hover {
 body{
     font-family: 'Raleway', Arial, Helvetica, sans-serif;
     color: white;
-    background: linear-gradient(116.82deg, #3D5467 0%, #1A232B 99.99%, #333333 100%);
+    background: linear-gradient(116.82deg, #3D5467 2%, #582626 99.99%, #2e2b2b 100%);
 
 }
 a {
@@ -140,7 +140,7 @@ main#home {
     margin: 20px 0 0;
     font-size: 36px;
     font-weight: 900;
-    color: #DB5461;
+    color:#23ecec;
 }
 #home > .about__me > h3 {
     font-size: 28px;
@@ -170,7 +170,7 @@ main#home {
 
 }
 .skills_projects_link > a:hover {
-    color: #DB5461;
+    color: #23ecec;
     transition: all 0.5s ease-in-out;
 
 }
@@ -184,7 +184,7 @@ main#home {
     content: "";
     width: 30px;
     height: 2px;
-    background-color: #DB5461;
+    background-color:#23ecec;
     transition: background-color 0.5s ease-in-out;
 
 }
@@ -205,7 +205,7 @@ nav a {
     font-weight: 900;
 }
 nav a:hover {
-    color: #DB5461;
+    color: #23ecec;
 }
 /* Portfolio Page Section */
 
@@ -248,7 +248,7 @@ nav a:hover {
 #skills_section ul  li {
     padding: 1rem;
     margin: 0.5rem;
-    background-color: #DB5461;
+    background-color: #23ecec;
     border: 5px solid #3D5467;
     border-radius: 35px;
 }
