@@ -75,7 +75,7 @@ const Projects = {
                             <button class="btn_load_more" v-on:click="loadMore()">Load More</button>
                         </div>
                         <div v-else>
-                            <a href="" target="_blank" rel="noopener noreferrer">Visit My GitHub</a>
+                            <a href="wwww.github.com/plattco" target="_blank" rel="noopener noreferrer">Visit My GitHub</a>
                         </div>
 
                     </div>
