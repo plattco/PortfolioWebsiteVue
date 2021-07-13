@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VueJS / GitHub API</title>
-    
-
+    <title>Vuefolio</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-    <div id='app'>
-        <header>
-                  <nav>
-                      <router-link to="/">Home</router-link>
-                      <router-link to="/projects">Projects</router-link>
-                  </nav>
-              </header>
-      
-              <router-view></router-view>
-      </div>
 
-    <!-- Axios latest version CDN -->
+    <div id="app">
+
+        <!-- Render the component for the corresponding route -->
+        <router-view></router-view>
+
+    </div>
+    <footer> © Developed by <a href="https://fabiopacifici.com">Fabio Pacific</a> </footer>
+    <!-- Axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     <!-- VueJS development version -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.js"></script>
-
-    <script src="./main.js"></script>
-
-    
+    <!-- Vue Router -->
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <!-- Main Js file -->
+    <script src="./assets/js/main.js"></script>
 </body>
+
 </html>

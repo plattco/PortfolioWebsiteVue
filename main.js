@@ -1,39 +1,75 @@
 
-const Home = {template: '<div>My Portfolio</div>'} 
-const Projects = {
+const Home = {
+    template: 
+    `<main id="home">
+        <div class="about__me">
+            <img src="./assets/img/avatar.svg" alt="">
+            <h1>John Doe</h1>
+            <h3>Python Expert</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
     
-    template: `<div> 
-         <div v-for="project in projects">
-            <h2 class="title">{{project.full_name}}</h2>
-            
-            <div class="author">
-                <img width="50px" :src="project.owner.avatar_url" alt="me">
-            </div>
-            <div class="view">
-                <a :href="project.html_url">View</a>
+            <div class="skills_projects_link">
+                <router-link to="/projects">Projects/Skills</router-link> 
             </div>
         </div>
-    </div>`,
-    data(){
+    </main>`
+}
+const Projects = {
+    template: 
+    `<div>
+    <header id="site_header" class="container d_flex">
+        <div class="bio__media">
+            <img src="./assets/img/avatar.svg" alt="">
+            <div class="bio__media__text">
+                <h1>John Doe</h1>
+                <h3>Python Expert</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+            </div>
+        </div>
+        <nav>
+            <router-link to='/'>Home</router-link>
+            <router-link to="/projects">Project</router-link>
+            <a href="https://">
+                <i class="fab fa-github fa-lg fa-fw"></i>
+            </a>
+        </nav>
+    </header>
+
+</div>`,
+    data() { 
         return {
-            projects: [],
-            perPage: 20,
-            page: 1
-        }
-    }, 
-    mounted(){
-        
-         axios
-         .get(`https://api.github.com/users/plattco/repos?per_page=${this.perPage}&page=${this.page}`)
-         .then(
-            response => {
-                //console.log(response);
-                this.projects = response.data;
+               projects: [],
+               projectsList: null,
+               skills: [],
+               projectsCount: 5,
+               perPage: 20,
+               page: 1,
+               loading: true,
+               errors: false,
             }
-        )
-        .catch(error=> {console.log(error);})
+    },
+    methods: {
+        getProjects: function(){
+
+            this.projectsList = this.projects.slice(0, this.projectsCount);
+            return this.projectsList;
+        
+        },
+        loadMore(){
+            
+            if(this.projectsList.length <= this.projects.length){
+                this.projectsCount += 5;
+                this.projectsList = this.projects.slice(0, this.projectsCount)
+            }
+            
+        
+        }
+    },
+    mounted(){  
+        // Lifecycle hook      
+        
     }
-} 
+}
 
 // Define some routes
 const routes = [
@@ -42,7 +78,7 @@ const routes = [
 ];
 // Create the router instance and pass the routes to it
 const router = new VueRouter({
-routes: routes
+routes
 });
 // Create and mount the root instance.
 
