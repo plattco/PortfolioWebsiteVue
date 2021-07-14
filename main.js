@@ -9,7 +9,11 @@ const Home = {
             <p>Software engineer focused on designing and implementing backend software solutions and mobile app development.<br><br>Constantly improving. <br><br>Always learning.</p>
     
             <div class="skills_projects_link">
-                <router-link to="/projects">Projects/Skills</router-link> 
+                <router-link to="/projects">Portfolio</router-link> 
+            </div>
+            <br>
+            <div class="skills_projects_link">
+                <a href="Cody-Platt-Resume.pdf">Resume</a> 
             </div>
         </div>
     </main>`
@@ -27,8 +31,8 @@ const Projects = {
                 </div>
             </div>
             <nav>
-                <router-link to='/'>Home         </router-link>
-                <router-link to="/projects">Projects         </router-link>
+                <router-link to='/'>Home</router-link>
+                <router-link to="/projects">Projects</router-link>
                 <a href="https://www.github.com/plattco">
                     <i class="fab fa-github fa-lg fa-fw"></i>
                 </a>
