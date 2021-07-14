@@ -13,7 +13,7 @@ const Home = {
             </div>
             <br>
             <div class="skills_projects_link">
-                <a href="Cody-Platt-Resume.pdf">Resume</a> 
+                <a href="Cody-Platt-Resume.pdf">Resumé</a> 
             </div>
         </div>
     </main>`
@@ -33,6 +33,7 @@ const Projects = {
             <nav>
                 <router-link to='/'>Home</router-link>
                 <router-link to="/projects">Projects</router-link>
+                <a href="Cody-Platt-Resume.pdf">Resumé</a> 
                 <a href="https://www.github.com/plattco">
                     <i class="fab fa-github fa-lg fa-fw"></i>
                 </a>
