@@ -187,7 +187,7 @@ import router from './router';
 import VueAnalytics from 'vue-analytics';
 
 Vue.use(VueAnalytics, {
-    id: 'UA-12345678-1',
+    id: 'G-1M6MC8P6E1',
     router
 });
 // Create and mount the root instance.
