@@ -182,9 +182,6 @@ const router = new VueRouter({
 routes
 });
 
-import router from './router';
-
-import VueAnalytics from 'vue-analytics';
 
 Vue.use(VueAnalytics, {
     id: 'G-1M6MC8P6E1',
