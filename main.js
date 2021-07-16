@@ -69,6 +69,12 @@ const Projects = {
                                 Code
                             </a>
                         </div>
+                        <br>
+                        <div class="card_custom__button">
+                            <a :href="project.html_url" target="_blank">
+                                Demo
+                            </a>
+                        </div>
                     
                     
                     </div>

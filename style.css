@@ -87,7 +87,7 @@ a:hover {
 }
 .card_custom__button a, .btn_load_more {
     background: #F1EDEE;
-    border: 5px solid #3D5467;
+    border: 2px solid #000000;
     box-sizing: border-box;
     border-radius: 54px;
     padding: 0.5rem 1rem;
