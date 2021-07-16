@@ -181,8 +181,18 @@ const routes = [
 const router = new VueRouter({
 routes
 });
+
+import router from './router';
+
+import VueAnalytics from 'vue-analytics';
+
+Vue.use(VueAnalytics, {
+    id: 'UA-12345678-1',
+    router
+});
 // Create and mount the root instance.
 
 const app = new Vue({
     router 
 }).$mount('#app');
+
