@@ -1,4 +1,3 @@
-import VueAnalytics from 'vue-analytics';
 const Home = {
     template: 
     `<main id="home">
@@ -184,11 +183,6 @@ routes
 
 
 // Create and mount the root instance.
-
-Vue.use(VueAnalytics, {
-    id: 'G-1M6MC8P6E1'
-  });
-
 const app = new Vue({
     router 
 }).$mount('#app');
