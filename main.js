@@ -12,14 +12,19 @@ const Home = {
             </div>
             <br>
             <div class="skills_projects_link">
-                <router-link to="/log-pr">Log PR</router-link> 
+                <a href="Cody-Platt-Resume.pdf">Resumé</a> 
             </div>
             <br>
             <div class="skills_projects_link">
-                <a href="Cody-Platt-Resume.pdf">Resumé</a> 
+              <router-link to="/log-pr">Personal Tools</router-link> 
             </div>
         </div>
-    </main>`
+    </main>`,
+    data() {
+        return {
+            showPersonalTools: false
+        }
+    }
 }
 const Projects = {
     template:
@@ -36,8 +41,8 @@ const Projects = {
             <nav>
                 <router-link to='/'>Home</router-link>
                 <router-link to="/projects">Projects</router-link>
-                <router-link to="/log-pr">Log PR</router-link>
                 <a href="Cody-Platt-Resume.pdf">Resumé</a> 
+                <router-link to="/log-pr">Personal Tools</router-link>
                 <a href="https://www.github.com/plattco">
                     <i class="fab fa-github fa-lg fa-fw"></i>
                 </a>
@@ -118,6 +123,7 @@ const Projects = {
             page: 1,
             loading: true,
             errors: false,
+            showPersonalTools: false // Added dropdown state
         }
     },
     methods: {
@@ -197,8 +203,8 @@ const PRLogger = {
             <nav>
                 <router-link to='/'>Home</router-link>
                 <router-link to="/projects">Projects</router-link>
-                <router-link to="/log-pr">Log PR</router-link>
                 <a href="Cody-Platt-Resume.pdf">Resumé</a> 
+                <router-link to="/log-pr">Personal Tools</router-link>
                 <a href="https://www.github.com/plattco">
                     <i class="fab fa-github fa-lg fa-fw"></i>
                 </a>
@@ -293,7 +299,8 @@ const PRLogger = {
             value: '',
             dateAchieved: '',
             statusMessage: '',
-            isLoading: false
+            isLoading: false,
+            showPersonalTools: false // Added dropdown state
         }
     },
     methods: {
