@@ -301,15 +301,24 @@ const PRLogger = {
             this.isLoading = true;
             this.statusMessage = 'Submitting PR entry...';
 
+            // A mapping to convert the dropdown strings to integer values expected by the backend
+            const typeMap = {
+                'WeightAndReps': 0,
+                'DistanceAndTime': 1,
+                'Bodyweight': 2
+            };
+
             const newPrEntry = {
                 activityName: this.activityName,
-                type: this.type,
+                // Use the mapped integer value for the type
+                type: typeMap[this.type],
                 value: this.value,
-                dateAchieved: this.dateAchieved
+                // Format the date to an ISO 8601 string as expected by the backend
+                dateAchieved: new Date(this.dateAchieved).toISOString()
             };
 
             try {
-                const response = await fetch('/api/exercise', {
+                const response = await fetch('http://localhost:5018/api/exercise', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
