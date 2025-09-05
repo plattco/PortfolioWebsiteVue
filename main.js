@@ -325,7 +325,6 @@ const PRLogger = {
             };
 
             try {
-                const response = await fetch('http://localhost:5018/api/exercise', {
                 const response = await fetch('https://plattsdatatracker.azurewebsites.net/api/exercise', {
                     method: 'POST',
                     headers: {
