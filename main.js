@@ -5,7 +5,7 @@ const Home = {
             <img src="./assets/img/avatar.svg" alt="">
             <h1>Cody Platt</h1>
             <h3>.NET Engineer</h3>
-            <p>Software engineer focused on designing and implementing backend software solutions and mobile app development.<br><br>Constantly improving. <br><br>Always learning.</p>
+            <p>Software engineer focused on designing and implementing robust software solutions and building tangible products.<br><br>Constantly improving. <br><br>Always learning.</p>
     
             <div class="skills_projects_link">
                 <router-link to="/projects">Portfolio</router-link> 
@@ -326,6 +326,7 @@ const PRLogger = {
 
             try {
                 const response = await fetch('http://localhost:5018/api/exercise', {
+                const response = await fetch('https://plattsdatatracker.azurewebsites.net/api/exercise', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
