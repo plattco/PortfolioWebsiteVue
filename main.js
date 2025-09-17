@@ -669,8 +669,7 @@ const MediaCollection = {
     `,
     data() {
         return {
-            // UPDATE THIS URL to your deployed API endpoint
-            apiUrl: 'https://your-api-url.azurewebsites.net/api', // Same as your PR Logger API
+            apiUrl: 'https://mediacollectionapi.azurewebsites.net/',
             mediaItems: [],
             stats: null,
             loading: true,
