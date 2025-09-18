@@ -716,7 +716,9 @@ const MediaCollection = {
                 genre: '',
                 publisher: '',
                 releaseYear: null,
-                notes: ''
+                notes: '',
+                barcode: '',
+                imageUrl: ''
             };
         },
 
