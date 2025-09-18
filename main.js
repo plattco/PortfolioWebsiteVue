@@ -669,7 +669,7 @@ const MediaCollection = {
     `,
     data() {
         return {
-            apiUrl: 'https://mediacollectionapi.azurewebsites.net/',
+            apiUrl: 'https://mediacollectionapi.azurewebsites.net/api',
             mediaItems: [],
             stats: null,
             loading: true,
