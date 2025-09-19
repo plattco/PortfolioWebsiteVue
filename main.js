@@ -391,6 +391,7 @@ const MediaCollection = {
         </header>
 
         <main class="container">
+            <!-- Collection Stats -->
             <div class="collection-header" v-if="stats">
                 <h2>📚 My Media Collection</h2>
                 <div class="stats-grid">
@@ -413,6 +414,7 @@ const MediaCollection = {
                 </div>
             </div>
 
+            <!-- Controls and Filters -->
             <div class="media-controls">
                 <div class="filter-bar">
                     <select v-model="filters.mediaType" class="filter-select">
@@ -469,15 +471,18 @@ const MediaCollection = {
                 </div>
             </div>
 
+            <!-- Loading State -->
             <div v-if="loading" class="loading">
                 Loading your collection...
             </div>
 
+            <!-- Empty State -->
             <div v-else-if="mediaItems.length === 0" class="empty-state">
                 <h3>No items found</h3>
                 <p>Try adjusting your filters or add your first item!</p>
             </div>
 
+            <!-- Media Grid -->
             <div v-else class="media-grid">
                 <div v-for="item in mediaItems" :key="item.id" 
                      :class="['media-card', { favorite: item.isFavorite }]">
@@ -504,6 +509,7 @@ const MediaCollection = {
                 </div>
             </div>
 
+            <!-- Add/Edit Modal -->
             <div :class="['modal', { active: showAddModal || showEditModal }]" @click.self="closeModal">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -623,6 +629,7 @@ const MediaCollection = {
                 </div>
             </div>
 
+            <!-- Quick Price Update Modal -->
             <div :class="['modal', { active: showPriceModal }]" @click.self="closePriceModal">
                 <div class="modal-content modal-small">
                     <div class="modal-header">
@@ -709,10 +716,7 @@ const MediaCollection = {
                 genre: '',
                 publisher: '',
                 releaseYear: null,
-                notes: '',
-                // Add the missing DTO properties with default values
-                barcode: '',
-                imageUrl: ''
+                notes: ''
             };
         },
 
@@ -731,7 +735,7 @@ const MediaCollection = {
                 this.mediaItems = response.data;
             } catch (error) {
                 console.error('Error loading items:', error);
-                alert('Failed to load items. Please try again later.');
+                alert('Failed to load items. Please try again.');
             } finally {
                 this.loading = false;
             }
@@ -746,33 +750,24 @@ const MediaCollection = {
             }
         },
 
+        editItem(item) {
+            this.currentItem = { ...item };
+            this.showEditModal = true;
+        },
+
         async saveItem() {
             try {
-                // Prepare the payload to ensure all properties match the DTO
-                const itemPayload = {
-                    ...this.currentItem,
-                    // Convert potentially empty number inputs to null
-                    rating: this.currentItem.rating !== '' ? this.currentItem.rating : null,
-                    price: this.currentItem.price !== '' ? this.currentItem.price : null,
-                    releaseYear: this.currentItem.releaseYear !== '' ? this.currentItem.releaseYear : null,
-                    // Explicitly handle IsFavorite as a boolean
-                    isFavorite: !!this.currentItem.isFavorite,
-                    // Ensure Quantity is at least 1, and convert to int
-                    quantity: parseInt(this.currentItem.quantity) || 1
-                };
-
                 if (this.showEditModal) {
-                    await axios.put(`${this.apiUrl}/MediaItems/${itemPayload.id}`, itemPayload);
+                    await axios.put(`${this.apiUrl}/MediaItems/${this.currentItem.id}`, this.currentItem);
                 } else {
-                    await axios.post(`${this.apiUrl}/MediaItems`, itemPayload);
+                    await axios.post(`${this.apiUrl}/MediaItems`, this.currentItem);
                 }
-
+                this.closeModal();
                 this.loadItems();
                 this.loadStats();
-                this.closeModal();
             } catch (error) {
-                console.error('Error saving item:', error.response ? error.response.data : error.message);
-                alert('Failed to save item. Please check the console for details.');
+                console.error('Error saving item:', error);
+                alert('Failed to save item. Please try again.');
             }
         },
 
@@ -783,13 +778,13 @@ const MediaCollection = {
                     this.loadItems();
                     this.loadStats();
                 } catch (error) {
-                    console.error('Error deleting item:', error.response ? error.response.data : error.message);
-                    alert('Failed to delete item.');
+                    console.error('Error deleting item:', error);
+                    alert('Failed to delete item. Please try again.');
                 }
             }
         },
 
-        async quickPriceUpdate(item) {
+        quickPriceUpdate(item) {
             this.priceUpdateItem = { ...item };
             this.newPrice = item.price || 0;
             this.showPriceModal = true;
@@ -797,38 +792,46 @@ const MediaCollection = {
 
         async savePriceUpdate() {
             try {
-                const updatedItem = {
-                    ...this.priceUpdateItem,
-                    price: this.newPrice,
-                    priceLastUpdated: new Date().toISOString()
-                };
-
-                await axios.put(`${this.apiUrl}/MediaItems/${updatedItem.id}`, updatedItem);
-
+                await axios.patch(`${this.apiUrl}/MediaItems/${this.priceUpdateItem.id}/price`, {
+                    price: this.newPrice
+                });
+                this.closePriceModal();
                 this.loadItems();
                 this.loadStats();
-                this.closePriceModal();
+                alert(`Price updated to \$${this.newPrice.toFixed(2)}`);
             } catch (error) {
-                console.error('Error updating price:', error.response ? error.response.data : error.message);
-                alert('Failed to update price.');
+                console.error('Error updating price:', error);
+                alert('Failed to update price. Please try again.');
             }
-        },
-
-        editItem(item) {
-            this.currentItem = { ...item };
-            this.showEditModal = true;
-        },
-
-        closeModal() {
-            this.showAddModal = false;
-            this.showEditModal = false;
-            this.currentItem = this.getEmptyItem();
         },
 
         closePriceModal() {
             this.showPriceModal = false;
             this.priceUpdateItem = {};
             this.newPrice = 0;
+        },
+
+        closeModal() {
+            this.showAddModal = false;
+            this.showEditModal = false;
+            this.currentItem = this.getEmptyItem();
         }
     }
 }
+
+// Define some routes
+const routes = [
+    {path: '/', component: Home},
+    {path: '/projects', component: Projects},
+    {path: '/log-pr', component: PRLogger},
+    {path: '/media-collection', component: MediaCollection}
+];
+const router = new VueRouter({
+    routes
+});
+
+
+// Create and mount the root instance.
+const app = new Vue({
+    router
+}).$mount('#app');
