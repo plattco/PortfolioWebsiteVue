@@ -479,30 +479,36 @@ const MediaCollection = {
             </div>
 
             <div v-else class="media-grid">
-                <div v-for="item in mediaItems" :key="item.id" 
-                     :class="['media-card', { favorite: item.isFavorite }]">
-                    <span :class="['media-type-badge', 'type-' + item.mediaType.toLowerCase()]">
-                        {{ item.mediaType }}
-                    </span>
-                    <div class="media-title">{{ item.title }}</div>
-                    <div class="media-details">
-                        <div v-if="item.platform"><strong>Platform:</strong> {{ item.platform }}</div>
-                        <div v-if="item.rating" class="rating">
-                            {{ '⭐'.repeat(Math.floor(item.rating)) }} {{ item.rating }}/5
-                        </div>
-                        <div v-if="item.price"><strong>Value:</strong> \${{ item.price.toFixed(2) }}</div>
-                        <div><strong>Status:</strong> {{ item.status }}</div>
-                        <div v-if="item.quantity > 1"><strong>Quantity:</strong> {{ item.quantity }}</div>
-                        <div v-if="item.condition"><strong>Condition:</strong> {{ item.condition }}</div>
-                        <div v-if="item.genre"><strong>Genre:</strong> {{ item.genre }}</div>
-                    </div>
-                    <div class="action-buttons">
-                        <button class="btn-edit" @click="editItem(item)">Edit</button>
-                        <button class="btn-price" @click="quickPriceUpdate(item)">Update Price</button>
-                        <button class="btn-delete" @click="deleteItem(item)">Delete</button>
-                    </div>
-                </div>
+    <div v-for="item in mediaItems" :key="item.id" 
+         :class="['media-card', { 'is-favorite': item.isFavorite }]">
+        
+        <div class="media-image-container">
+            <img :src="item.imageUrl" :alt="item.title" class="media-image">
+            <span :class="['media-type-badge', 'type-' + item.mediaType.toLowerCase()]">
+                {{ item.mediaType }}
+            </span>
+        </div>
+
+        <div class="media-content">
+            <div class="media-title-price">
+                <div class="media-title-text">{{ item.title }}</div>
+                <div class="media-price" v-if="item.price">\\${{item.price.toFixed(2)}}</div>
             </div>
+
+            <div class="media-rating-status">
+                <div class="media-rating" v-if="item.rating">
+                    {{ '⭐'.repeat(Math.floor(item.rating)) }}
+                </div>
+                <div class="media-status">{{ item.status }}</div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-edit" @click="editItem(item)">Edit</button>
+            <button class="btn-delete" @click="deleteItem(item)">Delete</button>
+        </div>
+    </div>
+</div>
 
             <div :class="['modal', { active: showAddModal || showEditModal }]" @click.self="closeModal">
                 <div class="modal-content">
