@@ -246,6 +246,12 @@ nav a:hover {
     flex-wrap: wrap;
 
 }
+
+.filter-select option {
+    background-color: #333;
+    color: #fff;      
+}
+
 #skills_section ul  li {
     padding: 1rem;
     margin: 0.5rem;
