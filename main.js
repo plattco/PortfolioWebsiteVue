@@ -494,8 +494,9 @@ const MediaCollection = {
         
         <!-- Thumbnail Section -->
         <div class="media-thumbnail">
-            <img v-if="item.thumbnailUrl" :src="item.thumbnailUrl" :alt="item.title" />
-            <div v-else class="media-thumbnail-placeholder">
+            <img :src="getImageUrl(item)" :alt="item.title" />
+        
+            <div v-if="!item.imageUrl && !item.thumbnailUrl" class="media-thumbnail-placeholder">
                 <span class="placeholder-icon">
                     <i v-if="item.mediaType === 'VideoGame'" class="fas fa-gamepad"></i>
                     <i v-else-if="item.mediaType === 'DVD'" class="fas fa-compact-disc"></i>
@@ -640,6 +641,11 @@ const MediaCollection = {
                                 Mark as Favorite
                             </label>
                         </div>
+                        
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input v-model="currentItem.imageUrl"> 
+                        </div>
 
                         <div class="form-group">
                             <label>Notes</label>
@@ -741,8 +747,17 @@ const MediaCollection = {
                 genre: '',
                 publisher: '',
                 releaseYear: null,
+                imageUrl: '',
                 notes: ''
             };
+        },
+
+        getImageUrl(item) {
+            if (item.imageUrl && item.imageUrl.trim() !== '') {
+                return item.imageUrl;
+            } else {
+                return item.thumbnailUrl;
+            }
         },
 
         async loadItems() {
