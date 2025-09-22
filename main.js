@@ -737,18 +737,18 @@ const MediaCollection = {
             return {
                 title: '',
                 mediaType: 'VideoGame',
-                platform: '',
+                platform: null,
                 status: 'Owned',
                 rating: null,
                 price: null,
                 isFavorite: false,
                 quantity: 1,
-                condition: '',
-                genre: '',
-                publisher: '',
+                condition: null,
+                genre: null,
+                publisher: null,
                 releaseYear: null,
-                imageUrl: '',
-                notes: ''
+                imageUrl: null,
+                notes: null
             };
         },
 
