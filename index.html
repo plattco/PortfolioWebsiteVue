@@ -9,28 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <div id="app">
-        
+<div id="app">
+    <router-view></router-view>
+</div>
 
-        <!-- Render the component for the corresponding route -->
-        <router-view></router-view>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
 
-    </div>
-    <!-- Axios -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- VueJS development version -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./media-collection.js"></script>
 
-    <!-- Vue Router -->
-    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
-    <!-- Main Js file -->
-    <script src="./main.js"></script>
+<script type="module" src="./main.js"></script>
 </body>
 
 </html>
