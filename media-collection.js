@@ -2,7 +2,7 @@ const MediaCollection = {
     template: `
     <div>
         <div v-if="!selectedUser" class="profile-picker-container">
-            <h1>Who's Collection?</h1>
+            <h1>Who's Collecting?</h1>
             <div class="profile-list">
                 <div v-for="user in users" :key="user.id" class="profile-card" @click="selectUser(user)">
                     <div class="profile-avatar">{{ user.username.charAt(0).toUpperCase() }}</div>
