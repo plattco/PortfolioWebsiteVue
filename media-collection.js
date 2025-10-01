@@ -381,7 +381,12 @@ const MediaCollection = {
             selectedUser: null,
             showCreateProfile: false,
             newUsername: '',
-            createUserError: ''
+            createUserError: '',
+            showSearchModal: false,
+            searchQuery: '',
+            searchResults: [],
+            isSearching: false,
+            searchError: ''
         };
     },
     mounted() {
@@ -570,6 +575,80 @@ const MediaCollection = {
                 console.error('Error updating price:', error);
                 alert('Failed to update price. Please try again.');
             }
+        },
+        async searchMedia() {
+            if (!this.searchQuery) return;
+            this.isSearching = true;
+            this.searchResults = [];
+            this.searchError = '';
+
+            try {
+                // Call the backend endpoint that searches IGDB
+                const response = await axios.get(`${this.apiUrl}/External/search/games`, {
+                    params: { term: this.searchQuery }
+                });
+                this.searchResults = response.data;
+                if (this.searchResults.length === 0) {
+                    this.searchError = "No results found.";
+                }
+            } catch (error) {
+                console.error("Error searching media:", error);
+                this.searchError = "Failed to search for media. Please try again.";
+            } finally {
+                this.isSearching = false;
+            }
+        },
+
+        selectSearchResult(apiItem) {
+            this.currentItem = this.getEmptyItem();
+            this.currentItem.title = apiItem.name;
+
+            if (apiItem.first_release_date) {
+                this.currentItem.releaseYear = new Date(apiItem.first_release_date * 1000).getFullYear();
+            }
+            if (apiItem.platforms && apiItem.platforms.length > 0) {
+                this.currentItem.platform = apiItem.platforms[0].name;
+            }
+            if (apiItem.cover) {
+                this.currentItem.imageUrl = apiItem.cover.url;
+            }
+
+            this.showSearchModal = false;
+            this.showAddModal = true;
+        },
+
+        async fetchResaleValue(item) {
+            if (!item.title) {
+                alert("Item must have a title to fetch its value.");
+                return;
+            }
+            try {
+                const response = await axios.get(`${this.apiUrl}/External/value-agent`, {
+                    params: {
+                        title: item.title,
+                        platform: item.platform
+                    }
+                });
+
+                const marketPrice = response.data.estimatedPrice;
+
+                this.currentItem.price = marketPrice;
+                alert(`Market value updated to: $${marketPrice.toFixed(2)}`);
+
+            } catch (error) {
+                console.error("Error fetching resale value:", error);
+                alert("Could not retrieve market value from recent sales.");
+            }
+        },
+        openSearchModal() {
+            this.searchQuery = '';
+            this.searchResults = [];
+            this.searchError = '';
+            this.showSearchModal = true;
+        },
+
+        closeSearchModal() {
+            this.showSearchModal = false;
         },
         closePriceModal() {
             this.showPriceModal = false;
