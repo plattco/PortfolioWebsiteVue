@@ -294,6 +294,7 @@ const MediaCollection = {
                     </form>
                 </div>
             </div>
+
             <div :class="['modal', { active: showSearchModal }]" @click.self="closeSearchModal">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -304,6 +305,11 @@ const MediaCollection = {
                         <input v-model="searchQuery" placeholder="e.g., Super Mario 64" required>
                         <button type="submit" :disabled="isSearching">{{ isSearching ? 'Searching...' : 'Search' }}</button>
                     </form>
+
+                    <div class="manual-add-link">
+                        <a href="#" @click.prevent="switchToManualAdd">Or, add an item manually</a>
+                    </div>
+                    
                     <div v-if="searchError" class="error-message">{{ searchError }}</div>
                     <div class="search-results">
                         <div v-for="result in searchResults" :key="result.id" class="search-result-item" @click="selectSearchResult(result)">
@@ -316,6 +322,7 @@ const MediaCollection = {
                     </div>
                 </div>
             </div>
+
         </main>
     </div>
 </div>
@@ -403,6 +410,11 @@ const MediaCollection = {
                 console.error('Error creating user:', error);
                 this.createUserError = error.response?.data || 'Failed to create profile. Please try again.';
             }
+        },
+        switchToManualAdd() {
+            this.closeSearchModal(); // Close the search popup
+            this.currentItem = this.getEmptyItem(); // Ensure the form is blank
+            this.showAddModal = true; // Open the original add/edit form
         },
         switchUser() {
             this.selectedUser = null;

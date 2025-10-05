@@ -11,10 +11,10 @@
 }
 a {
     color: white;
-} 
+}
 a:hover {
     color: #23ecec;
-    
+
 }
 .loading {
     font-size: 2rem;
@@ -43,7 +43,7 @@ a:hover {
     font-weight: 100;
     font-size: 16px;
     line-height: 1.5rem;
-    
+
 }
 
 .card__custom {
@@ -70,7 +70,7 @@ a:hover {
 
 }
 .card__custom__img {
-    
+
     position: absolute;
     width: 70%;
     height: 100%;
@@ -119,7 +119,7 @@ body{
 
 }
 a {
- text-decoration: none;   
+ text-decoration: none;
 }
 
 /* Home Page */
@@ -212,7 +212,7 @@ nav a:hover {
 
 #portfolio {
     margin-top: 4rem;
-    
+
 }
 
 
@@ -961,6 +961,16 @@ footer {
     object-fit: cover;
     border-radius: 4px;
     background-color: #333;
+}
+
+.manual-add-link {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.manual-add-link a {
+    color: #64ffda;
+    text-decoration: underline;
 }
 
 .result-info {
