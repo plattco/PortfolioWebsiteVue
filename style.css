@@ -973,6 +973,11 @@ footer {
     text-decoration: underline;
 }
 
+.modal-content .form-group select option {
+    background: #333; /* A dark background for the dropdown list */
+    color: #fff;
+}
+
 .result-info {
     color: #fff;
 }
